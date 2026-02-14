@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine 💘</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="heart">
+    <div></div>
+    <div class="content">
+        <h3 id="question">Will you be my valentine? (choose yes,you have no choice) 💕</h3>
+        <p id="response"></p>
+        <div class="butt">
+            <button onclick="yesClick()">❤️ Yes ❤️</button>
+            <button id="noBtn" onclick="noClick()">No 😢</button>
+        </div>
+    </div>
+    
+    <video id="loveVideo" loop muted playsinline>
+        <source src="nice copy.mp4" type="video/mp4">
+    </video>
+ 
+</div>
+
+<div class="next">
+    <a href="content.html">
+        <button>now click this 🤌</button>
+    </a>
+</div>
+
+
+<script>
+
+let noMessages = [
+    "Are you sure? 🥺",
+    "Think again 😏",
+    "Please don’t break my heart 💔",
+    "This is your 4th warning 😶",
+    "Last chance... choose wisely 😌"
+];
+
+let index = 0;
+let clickCount = 0;
+
+function yesClick(){
+
+    document.querySelector(".content").style.display = "none";
+
+    let video = document.getElementById("loveVideo");
+    video.style.display = "block";
+    video.play();
+}
+
+function noClick(){
+    if(clickCount < 5){
+        // Show message on No button
+        const noBtn = document.querySelector("button:nth-child(2)");
+        noBtn.setAttribute("data-message", noMessages[index]);
+        noBtn.classList.add("show-message");
+        
+        document.getElementById("response").innerText = "";  // Clear old response
+
+        index++;
+        clickCount++;
+
+        if(index >= noMessages.length){
+            index = 0;
+        }
+
+        if(clickCount === 5){
+            document.querySelector("button:nth-child(2)").disabled = true;
+            document.getElementById("response").innerText = "No button has expired Mr.vr😌 Please select Yes.";
+            // Remove message on final disable
+            noBtn.classList.remove("show-message");
+        }
+    }
+}
+
+
+</script>
+
+</body>
+</html>
